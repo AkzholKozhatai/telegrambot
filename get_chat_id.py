@@ -20,7 +20,7 @@ async def send_gift_message():
         await client.send_message(chat_id, message)
 
         # Ждем  6минут (360 секунд)
-        await asyncio.sleep(360)
+        await asyncio.sleep(540)
 
 async def main():
     # Авторизация
