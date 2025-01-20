@@ -1,6 +1,8 @@
 from telethon import TelegramClient
 import asyncio
 from flask import Flask
+import os
+from threading import Thread
 
 # Инициализация Flask
 app = Flask(__name__)
@@ -23,18 +25,21 @@ async def send_gift_message():
 
     while True:
         await client.send_message(chat_id, message)
-        await asyncio.sleep(540)  # Ожидание 6 минут
+        await asyncio.sleep(540)  # Ожидание 9 минут
 
 async def main():
     await client.start(phone_number)
     await send_gift_message()
 
 # Запуск Flask в отдельном потоке
-if __name__ == "__main__":
-    from threading import Thread
+def run_flask():
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
 
+# Запуск приложения
+if __name__ == "__main__":
     # Запуск Flask в фоновом режиме
-    thread = Thread(target=app.run)
+    thread = Thread(target=run_flask)
     thread.daemon = True
     thread.start()
 
