@@ -21,11 +21,11 @@ def home():
 
 async def send_gift_message():
     chat_id = 1266771326  # ID вашего чата
-    message = ".отн сделать завтрак"
+    message = ".отн подарить цветы"
 
     while True:
         await client.send_message(chat_id, message)
-        await asyncio.sleep(540)  # Ожидание 9 минут
+        await asyncio.sleep(720)  # Ожидание 12 минут
 
 async def main():
     await client.start(phone_number)
