@@ -24,12 +24,21 @@ async def send_gift_message():
     message = ".отн посмотреть фильм"
 
     while True:
-        await client.send_message(chat_id, message)
+        try:
+            await client.send_message(chat_id, message)
+            print(f"Сообщение отправлено в чат {chat_id}: {message}")
+        except Exception as e:
+            print(f"Ошибка отправки сообщения: {e}")
         await asyncio.sleep(960)  # Ожидание 16 минут
 
 async def main():
-    await client.start(phone_number)
-    await send_gift_message()
+    # Автоматический вход с использованием существующей сессии
+    await client.start()
+    print("Telegram клиент запущен.")
+    # Создаем задачу для отправки сообщений
+    asyncio.create_task(send_gift_message())
+    # Держим клиента подключённым
+    await client.run_until_disconnected()
 
 # Запуск Flask в отдельном потоке
 def run_flask():
@@ -44,4 +53,5 @@ if __name__ == "__main__":
     thread.start()
 
     # Запуск Telegram клиента
-    asyncio.run(main())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
