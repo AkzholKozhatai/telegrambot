@@ -21,7 +21,7 @@ def home():
 
 async def send_gift_message():
     chat_id = 1266771326  # ID вашего чата
-    message = ".отн сделать массаж"
+    message = ".отн романтический ужин"
 
     while True:
         try:
@@ -29,7 +29,7 @@ async def send_gift_message():
             print(f"Сообщение отправлено в чат {chat_id}: {message}")
         except Exception as e:
             print(f"Ошибка отправки сообщения: {e}")
-        await asyncio.sleep(1260)  # Ожидание 21 минут
+        await asyncio.sleep(1860)  # Ожидание 21 минут
 
 async def main():
     # Автоматический вход с использованием существующей сессии
