@@ -21,7 +21,7 @@ def home():
 
 async def send_gift_message():
     chat_id = 1266771326  # ID вашего чата
-    message = ".отн сделать подарок"
+    message = ".отн туристическая поездка"
 
     while True:
         try:
@@ -29,14 +29,27 @@ async def send_gift_message():
             print(f"Сообщение отправлено в чат {chat_id}: {message}")
         except Exception as e:
             print(f"Ошибка отправки сообщения: {e}")
-        await asyncio.sleep(2340)  # Ожидание 39 минут
+        await asyncio.sleep(2760)  # Ожидание 46 минут 
+
+async def send_farm_message():
+    chat_id = 1266771326  # ID вашего чата
+    message = "ферма"
+
+    while True:
+        try:
+            await client.send_message(chat_id, message)
+            print(f"Сообщение отправлено в чат {chat_id}: {message}")
+        except Exception as e:
+            print(f"Ошибка отправки сообщения: {e}")
+        await asyncio.sleep(14700)  # Ожидание 245 минут (14700 секунд)
 
 async def main():
     # Автоматический вход с использованием существующей сессии
     await client.start()
     print("Telegram клиент запущен.")
-    # Создаем задачу для отправки сообщений
+    # Создаем задачи для отправки сообщений
     asyncio.create_task(send_gift_message())
+    asyncio.create_task(send_farm_message())
     # Держим клиента подключённым
     await client.run_until_disconnected()
 
