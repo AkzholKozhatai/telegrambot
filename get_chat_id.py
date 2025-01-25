@@ -19,7 +19,7 @@ client = TelegramClient('session_name', api_id, api_hash)
 def home():
     return "Telegram Bot is running!"
 
-async def send_gift_message():
+async def send_trip_message():
     chat_id = 1266771326  # ID вашего чата
     message = ".отн туристическая поездка"
 
@@ -29,7 +29,7 @@ async def send_gift_message():
             print(f"Сообщение отправлено в чат {chat_id}: {message}")
         except Exception as e:
             print(f"Ошибка отправки сообщения: {e}")
-        await asyncio.sleep(2760)  # Ожидание 46 минут 
+        await asyncio.sleep(2760)  # Ожидание 46 минут (2760 секунд)
 
 async def send_farm_message():
     chat_id = 1266771326  # ID вашего чата
@@ -47,11 +47,12 @@ async def main():
     # Автоматический вход с использованием существующей сессии
     await client.start()
     print("Telegram клиент запущен.")
-    # Создаем задачи для отправки сообщений
-    asyncio.create_task(send_gift_message())
-    asyncio.create_task(send_farm_message())
-    # Держим клиента подключённым
-    await client.run_until_disconnected()
+    # Параллельное выполнение двух задач
+    task1 = asyncio.create_task(send_trip_message())
+    task2 = asyncio.create_task(send_farm_message())
+    
+    # Следим за выполнением задач
+    await asyncio.gather(task1, task2)
 
 # Запуск Flask в отдельном потоке
 def run_flask():
