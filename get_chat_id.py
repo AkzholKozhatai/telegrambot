@@ -21,7 +21,7 @@ def home():
 
 async def send_trip_message():
     chat_id = 1266771326  # ID вашего чата
-    message = ".отн вечер астрономии"
+    message = ".отн приятные воспоминания"
 
     while True:
         try:
@@ -29,7 +29,7 @@ async def send_trip_message():
             print(f"Сообщение отправлено в чат {chat_id}: {message}")
         except Exception as e:
             print(f"Ошибка отправки сообщения: {e}")
-        await asyncio.sleep(3660)  # Ожидание 46 минут (2760 секунд)
+        await asyncio.sleep(4800)  # Ожидание 46 минут (2760 секунд)
 
 async def send_farm_message():
     chat_id = 1266771326  # ID вашего чата
